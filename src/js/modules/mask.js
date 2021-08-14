@@ -22,25 +22,25 @@ const mask = (selector) => {
             def = matrix.replace(/\D/g, ''),
             val = this.value.replace(/\D/g, '');
 
-            if (def.length >= val.length) {
-                val = def;
+        if (def.length >= val.length) {
+            val = def;
+        }
+
+        this.value = matrix.replace(/./g, function(a) {
+           
+            console.log(`${i} номер по порядку`);
+            console.log(`${a} значение к изменению`);
+
+            return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
+        });
+
+        if(event.type === 'blur') {
+            if (this.value.length == 2) {
+                this.value = '';
             }
-
-            this.value = matrix.replace(/./g, function(a) {
-                return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
-            });
-
-            if(event.type === 'blur') {
-                if (this.value.length == 2) {
-                    this.value = '';
-                }
-            } else {
-                setCursorPosition (this.value.length, this);
-
-                console.log(this.value.length);
-                console.log(this);
-                
-            }
+        } else {
+            setCursorPosition (this.value.length, this);
+        }
     }
 
     let inputs = document.querySelectorAll(selector);
@@ -48,8 +48,7 @@ const mask = (selector) => {
 
     inputs.forEach((item) => {
         item.addEventListener('input', createMask);
-        item.addEventListener('focus', createMask);
-        item.addEventListener('input', createMask);
+         
     });
 };
 
