@@ -27,10 +27,6 @@ const mask = (selector) => {
         }
 
         this.value = matrix.replace(/./g, function(a) {
-           
-            console.log(`${i} номер по порядку`);
-            console.log(`${a} значение к изменению`);
-
             return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? '' : a;
         });
 

@@ -1,9 +1,10 @@
 //import {checkNum} from "./checkNumInputs";
 import { postData } from "../services/request";
-const forms = () => {
+const forms = (state) => {
     const form = document.querySelectorAll('form'),
           input = document.querySelectorAll('input'),
           upload = document.querySelectorAll('[name="upload"]');
+          
 
     // checkNum('input[name="user_phone"]');
 
@@ -48,6 +49,7 @@ const forms = () => {
             e.preventDefault();
 
             let statusMessage = document.createElement('div');
+
             statusMessage.classList.add('status');
             item.parentNode.appendChild(statusMessage);
 
@@ -66,9 +68,16 @@ const forms = () => {
             statusMessage.append(textMessage);
 
             const formData = new FormData(item);
+                if (item.classList.contains('calc_form')) {
+                    for(let key in state) {
+                        formData.append(key, state[key]);
+                    }
+                 }
             let api;
             item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.questions;
             console.log(api);
+            console.log(state);
+            
             
  
             postData(api, formData)

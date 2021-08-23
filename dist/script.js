@@ -1094,7 +1094,6 @@ var sliders = function sliders(slides, direct, prev, next) {
 
   function chengeSlide(n) {
     showSlides(slideIndex += n);
-    console.log('rty');
   }
 
   try {
