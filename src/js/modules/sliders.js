@@ -26,8 +26,8 @@ const sliders = (slides, direct, prev, next) => {
         
     }
      try{
-        const prevBtn = document.querySelector('.main-prev-btn'),
-              nextBtn = document.querySelector('.main-next-btn');
+        const prevBtn = document.querySelector(prev),
+              nextBtn = document.querySelector(next);
 
         prevBtn.addEventListener('click', ()=> {
             chengeSlide(-1);

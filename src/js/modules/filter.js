@@ -1,19 +1,9 @@
 const filter = ()=> {
     const menu = document.querySelector('.portfolio-menu'),
-          btns = menu.querySelectorAll('li'),
-          btnAll = menu.querySelector('.all'),
-          btnGirls = menu.querySelector('.girl'),
-          btnLovers = menu.querySelector('.lovers'),
-          btnChef = menu.querySelector('.chef'),
-          btnGuy = menu.querySelector('.guy'),
-          btnGrandmother = menu.querySelector('.grandmother'),
-          btnGranddad = menu.querySelector('.granddad');
+          btns = menu.querySelectorAll('li');
+  
     const wrapper = document.querySelector('.portfolio-wrapper'),
           markAll = wrapper.querySelectorAll('.all'),
-          markGirls = wrapper.querySelectorAll('.girl'),
-          markLovers = wrapper.querySelectorAll('.lovers'),
-          markChef = wrapper.querySelectorAll('.chef'),
-          markGuy = wrapper.querySelectorAll('.guy'),
           markNo = document.querySelector('.portfolio-no');  
           
     menu.addEventListener('click', (e)=> {
@@ -42,7 +32,6 @@ const filter = ()=> {
             markNo.classList.remove('animated', 'fadeIn');
         }
     };
-
 
     function showActiveWorks() {
         btns.forEach(item => {
