@@ -1,27 +1,42 @@
 const accordion = (heading) => {
 
     const accordionHead = document.querySelectorAll(heading);
-
-    accordionHead.forEach(btn => {
+    let btnNumber ;
+// переменная не позволяет функции сработать, когда открыт таб, а пользователь кликает на него для закрытия.
+    accordionHead.forEach((btn, i) => {
         btn.addEventListener('click', function() {
-            accordionHead.forEach(activeBtn => {
-                if (activeBtn.classList.contains('active-style')) {
-                    activeBtn.classList.remove('active-style');
-                    activeBtn.nextElementSibling.classList.remove('active-content');
-                    activeBtn.nextElementSibling.style.maxHeight = 0;
-                }
-            });
-            
-            this.classList.toggle('active-style');
-            this.nextElementSibling.classList.toggle('active-content');
+            hide();
 
-            if (this.classList.contains('active-style')) {
-                this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + "px";
-            } else {
-                this.nextElementSibling.style.maxHeight = 0;
+            if (btnNumber !== i){
+            show(this);
             }
+
+            btnNumber= undefined;
         });
+        
     });
+
+    function show(trigger) {
+        trigger.classList.add('active-style');
+        trigger.nextElementSibling.classList.add('active-content');
+        if (trigger.classList.contains('active-style')) {
+            trigger.nextElementSibling.style.maxHeight = trigger.nextElementSibling.scrollHeight + 80 + "px";
+        } else {
+            trigger.nextElementSibling.style.maxHeight = 0;
+        }
+    }
+
+    function hide() {
+        accordionHead.forEach((activeBtn, i) => {
+            if (activeBtn.classList.contains('active-style')) {
+                activeBtn.classList.remove('active-style');
+                activeBtn.nextElementSibling.classList.remove('active-content');
+                activeBtn.nextElementSibling.style.maxHeight = 0;
+                btnNumber = i;
+            }
+                
+        });
+    }
 
     //       accordionBlocks = document.querySelectorAll(blocks);
 
